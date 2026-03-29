@@ -52,7 +52,6 @@ public abstract class HeaterBase
         if (_lastOpenTime == null) return;
         
         double hours = (DateTime.UtcNow - _lastOpenTime.Value).TotalHours;
-        
         if (hours < 0.001) hours = 5.5; 
 
         _lastOpenTime = null;
@@ -68,6 +67,11 @@ public class ElectricHeater : HeaterBase
 public class GasHeater : HeaterBase
 {
     public override double GetEffectivePower() => PowerKw * 0.85;
+}
+
+public class SolarHeater : HeaterBase
+{
+    public override double GetEffectivePower() => PowerKw * 0.7;
 }
 
 public class House
